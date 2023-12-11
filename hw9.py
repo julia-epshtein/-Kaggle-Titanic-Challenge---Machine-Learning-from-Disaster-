@@ -1,19 +1,32 @@
-import numpy as np
+# Data manipulation libraries
 import pandas as pd
+import numpy as np
+import random as rnd
+
+# Data visualization libraries
+import matplotlib.pyplot as plt
+
+# Machine learning libraries
+from sklearn.model_selection import train_test_split
+from sklearn import metrics
+from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression, Perceptron, SGDClassifier
+from sklearn.svm import SVC, LinearSVC
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.tree import DecisionTreeClassifier
+
+# Deep learning libraries
+import tensorflow as tf
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Input
+
+# JAX library for automatic differentiation
 import jax
 from jax import grad
 import jax.numpy as jnp
-import matplotlib.pyplot as plt
-from sklearn.tree import DecisionTreeClassifier # Import Decision Tree Classifier
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split # Import train_test_split function
-from sklearn import metrics #Import scikit-learn metrics module for accuracy calculation
-from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import StandardScaler
-import tensorflow as tf
-import keras 
-from keras.layers import Dense, Dropout, Input
-from keras.models import Sequential
 
 datapath = "./"
 
@@ -37,6 +50,7 @@ train_data['Has_Cabin'] = train_data['Cabin'].apply(lambda x: 0 if pd.isna(x) el
 
 # Drop Unnecessary Columns
 train_data.drop(['Name', 'Ticket', 'Cabin'], axis=1, inplace=True)
+test_data.drop(['Name', 'Ticket', 'Cabin'], axis=1, inplace=True)
 
 # Normalize/Scale Numerical Data (using Standard Normalization)
 train_data[['Age', 'Fare']] = (train_data[['Age', 'Fare']] - train_data[['Age', 'Fare']].mean()) / train_data[['Age', 'Fare']].std()
@@ -76,8 +90,18 @@ test_data['Age'] = test_data['Age'].astype(float)
 # Normalize the data with standard scaling
 
 # Fix-shape universal approximator method (kernel method) 
-def run_universal_approximator_method():
-    x=2
+def run_universal_approximator_method():    
+    x_train = train_data.drop(['Survived'], axis = 1)
+    y_train = train_data['Survived']
+    x_test = test_data.drop(['PassengerId'], axis = 1)
+    y_test = test_data['PassengerId']
+    
+    svc = SVC()
+    svc.fit(x_train, y_train)
+    Y_pred = svc.predict(x_test)
+    acc_svc = round(svc.score(x_train, y_train) * 100, 2)
+    print(acc_svc)
+
 
 
 ################## TASK 2 ##################
@@ -116,6 +140,7 @@ def run_neural_network_based_method():
 ################## TASK 3 ##################
 
 def run_tree_based_approach():
+    
     # Obtain Training Set From Training Data and Testing Set From Testing Data
     y = train_data["Survived"]
 
@@ -144,6 +169,6 @@ def run_tree_based_approach():
     
 # Main method
 if __name__ == '__main__':
-    #run_universal_approximator_method()
-    run_neural_network_based_method()
+    run_universal_approximator_method()
+    #run_neural_network_based_method()
     #run_tree_based_approach()
