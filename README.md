@@ -1,5 +1,4 @@
 # Titanic Survival Prediction Project
-# Titanic Survival Prediction Project
 
 ## Setting Up and Running the Project
 
