@@ -13,8 +13,8 @@
    ## To install Jax follow these steps:
    - Create a new Conda environment: conda create -n jax_env
    - Activate the new environment: conda activate jax_env
-   - Install Jax in your Conda environment using the following command: conda install -c conda-forge jax
-   - Install matplotlib in your environment using: conda install -c conda-forge matplotlib
+   - Install Jax in the Conda environment using the following command: conda install -c conda-forge jax
+   - Install matplotlib in the environment using: conda install -c conda-forge matplotlib
    
    ## NumPy and Pandas
    pip install numpy
@@ -26,13 +26,10 @@
 3. **Run the Jupyter Notebooks:**
    - Open and run the Jupyter notebooks in the `notebooks` directory for data preprocessing and model implementation.
 
-4. **Run the Python Scripts:**
-   - Execute the Python scripts in the `scripts` directory for specific tasks, such as data preprocessing and model training.
-
-5. **Explore Results:**
+4. **Explore Results:**
    - Check the accuracy table in the README or explore the generated visualizations and predictions.
 
-6. **Submit Predictions to Kaggle:**
+5. **Submit Predictions to Kaggle:**
    - If desired, follow the Kaggle submission guidelines provided in the notebooks or scripts to submit predictions.
 
 ## Introduction
